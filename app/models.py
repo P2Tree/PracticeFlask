@@ -3,6 +3,8 @@ from app import db, login
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
+from hashlib import md5
+
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
@@ -11,6 +13,9 @@ class User(UserMixin, db.Model):
 
     # 表间的高级映射，这里是一对多关系，user是一，post是多
     posts = db.relationship('Post', backref='author', lazy='dynamic')
+
+    about_me = db.Column(db.String(140))
+    last_seen = db.Column(db.DateTime, default=datetime.utcnow)
 
     # 调试时打印输出
     def __repr__(self):
@@ -23,6 +28,11 @@ class User(UserMixin, db.Model):
     # 校验明文密码与hash密码是否一致
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+    # 该函数可以通过传入的邮件名称来从gravatar获取一个头像
+    def avatar(self, size):
+        digest = md5(self.email.lower().encode('utf-8')).hexdigest()
+        return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(digest, size)
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
