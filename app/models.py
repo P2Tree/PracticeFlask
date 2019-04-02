@@ -1,9 +1,13 @@
 from datetime import datetime
+
 from app import db, login
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from app import app
 
 from hashlib import md5
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+from itsdangerous import BadSignature, SignatureExpired
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -33,6 +37,26 @@ class User(UserMixin, db.Model):
     def avatar(self, size):
         digest = md5(self.email.lower().encode('utf-8')).hexdigest()
         return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(digest, size)
+
+    # 为API授权登陆提供的TOKEN生成接口
+    def generate_auth_token(self, expiration: object = 600) -> object:
+        s = Serializer(app.config['SECRET_KEY'], expires_in=expiration)
+        return s.dumps({ 'id': self.id })
+
+    # 为API授权登陆提供的TOKEN验证接口
+    @staticmethod
+    def verify_auth_token(token):
+        s = Serializer(app.config['SECRET_KEY'])
+        try:
+            data = s.loads(token)
+        except SignatureExpired:
+            return None # 验证成功，但token已超时过期
+        except BadSignature:
+            return None # 验证失败
+
+        # 验证成功，获取用户信息
+        user = User.query.get(data['id'])
+        return user
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)

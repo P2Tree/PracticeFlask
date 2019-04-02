@@ -1,4 +1,4 @@
-from flask import request
+from flask import request, jsonify, g
 from flask import render_template, flash, redirect, url_for
 from app import app
 from app.forms import LoginForm, RegistrationForm, EditProfileForm
@@ -7,6 +7,7 @@ from werkzeug.urls import url_parse
 from flask_login import current_user, login_user, logout_user, login_required
 from app import db
 from datetime import datetime
+from app import auth
 
 
 @app.before_request
@@ -99,3 +100,31 @@ def edit_profile():
         form.about_me.data = current_user.about_me
     # 否则，验证失败且是POST请求，则直接返回原页面重新输入
     return render_template('edit_profile.html', title='Edit Profile', form=form)
+
+# 通过API获取token
+@app.route('/api/token')
+@auth.login_required
+def get_auth_token():
+    token = g.user.generate_auth_token()
+    return jsonify({ 'token': token.decode('ascii')})
+
+# 通过API验证密码，两种验证，如果是token放到了username的位置，则只验证token，否则验证用户名和密码
+@auth.verify_password
+def verify_password(username_or_token, password):
+    user = User.verify_auth_token(username_or_token)
+    if not user:
+        user = User.query.filter_by(username=username_or_token).first()
+        if not user or not user.check_password(password):
+            return False
+    g.user = user
+    return True
+
+# 通过API登陆
+@app.route('/api/test_login')
+@auth.login_required
+def login_required():
+    if g.user:
+        return '<h1>you are still in</h1>'
+    else:
+        return '<h1>you have logouted</h1>'
+
