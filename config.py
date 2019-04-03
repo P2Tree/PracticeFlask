@@ -9,3 +9,12 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     DEBUG = True
+
+    # 添加电子邮件信息，用于在发生错误后自动发送电子邮件通知
+    # 如果环境中没有电子邮件功能，则不会启动
+    MAIL_SERVER = os.environ.get('MAIL_SERVER')
+    MAIL_PORT = int(os.environ.get('MAIL_PORT') or 25)
+    MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS') is not None
+    MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
+    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+    ADMINS = ['your-email@example.com']

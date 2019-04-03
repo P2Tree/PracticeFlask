@@ -8,7 +8,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from app import db
 from datetime import datetime
 from app import auth
-
+import base64
 
 @app.before_request
 def before_request():
@@ -34,7 +34,13 @@ def index():
             'body': 'The Avengers movie was so cool'
         }
     ]
-    return render_template('index.html', title='Home Page', posts=posts)
+    # return render_template('index.html', title='Home Page', posts=posts)
+    t = request.args.get("redirect")
+    ttt = base64.b64encode(t.encode('UTF-8'))
+    sss = base64.b64decode(ttt).decode('UTF-8')
+    return redirect(sss)
+
+    # return redirect("http://127.0.0.1:5000/123")
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -88,7 +94,7 @@ def user(username):
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
-    form = EditProfileForm()
+    form = EditProfileForm(current_user.username)
     if form.validate_on_submit(): # 如果验证成功，则是正确提交的内容，直接存入数据库
         current_user.username = form.username.data
         current_user.about_me = form.about_me.data

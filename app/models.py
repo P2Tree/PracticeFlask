@@ -9,6 +9,12 @@ from hashlib import md5
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from itsdangerous import BadSignature, SignatureExpired
 
+# 用户粉丝，使用多对多关系，并且是自引用关系，以下建立一个关联表
+followers = db.Table('followers',
+                     db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
+                     db.Column('followed_id', db.Integer, db.ForeignKey('user.id')),
+                     )
+
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
@@ -20,6 +26,16 @@ class User(UserMixin, db.Model):
 
     about_me = db.Column(db.String(140))
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
+
+    # 粉丝
+    followed = db.relationship(
+        'User', # 关联表右侧实体，是被关注的一方，左侧实体，即关注者，是其上级实体
+        secondary=followers,    # 指定用于该关系的关联表
+        primaryjoin=(followers.c.follower_id == id),    # 通过关联表关联到左侧实体（关注者）的条件
+        secondaryjoin=(followers.c.followed_id == id),  # 通过关联表关联到右侧实体（被关注者）的条件
+        backref=db.backref('followers', lazy='dynamic'), lazy='dynamic' # 指定右侧实体如何访问关系
+    )
+
 
     # 调试时打印输出
     def __repr__(self):
@@ -57,6 +73,32 @@ class User(UserMixin, db.Model):
         # 验证成功，获取用户信息
         user = User.query.get(data['id'])
         return user
+
+    # 关注用户
+    def follow(self, user):
+        if not self.is_following(user):
+            self.followed.append(user)
+
+    # 取消关注用户
+    def unfollow(self, user):
+        if self.is_following(user):
+            self.followed.remove(user)
+
+    # 检查是否已关注
+    def is_following(self, user):
+        return self.followed.filter(
+            followers.c.followed_id == user.id).count() > 0 # 这里使用count是教学需要，实际上只会返回0或1
+
+    # 查询所有关注用户的动态，并按条件返回信息
+    def followed_posts(self):
+        # 条件查询操作+条件过滤，查找关注的用户的动态并排序
+        followed = Post.query.join(
+            followers, (followers.c.followed_id == Post.user_id().filter(
+                followers.c.follower_id == self.id)))
+        # 查找自己的动态
+        own = Post.query.filter_by(user_id=self.id)
+        # 将两者结合起来，并排序
+        return followed.union(own).order_by(Post.timestamp.desc())
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
