@@ -93,8 +93,8 @@ class User(UserMixin, db.Model):
     def followed_posts(self):
         # 条件查询操作+条件过滤，查找关注的用户的动态并排序
         followed = Post.query.join(
-            followers, (followers.c.followed_id == Post.user_id().filter(
-                followers.c.follower_id == self.id)))
+            followers, (followers.c.followed_id == Post.user_id)).filter(
+                followers.c.follower_id == self.id)
         # 查找自己的动态
         own = Post.query.filter_by(user_id=self.id)
         # 将两者结合起来，并排序
