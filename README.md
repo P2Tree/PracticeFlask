@@ -27,7 +27,7 @@
 - [x] 6th Chapter: **Profile Page and Avatars**, complete date: 2019/4/1
 - [x] 7th Chapter: **Error Handling**, complete date: 2019/4/2
 - [x] 8th Chapter: **Followers**, complete date: 2019/4/4
-- [] 9th Chapter: **Pagination**
+- [x] 9th Chapter: **Pagination**, complete date: 2019/4/8
 - [] 10th Chapter: **Email Support**
 - [] 11th Chapter: **Facelift**
 - [] 12th Chapter: **Dates and Times**
