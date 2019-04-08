@@ -1,4 +1,4 @@
-2019-04-08 21:14:42,037 ERROR: Exception on /user/ylm [GET] [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py:1761
+2019-04-07 21:17:02,775 ERROR: Exception on /user/ylm [GET] [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py:1761
 Traceback (most recent call last):
   File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,7 +14,7 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_login/utils.py", line 261, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/routes.py", line 96, in user
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/routes.py", line 83, in user
     return render_template('user.html', user=user, posts=posts)
   File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/templating.py", line 134, in render_template
     return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
@@ -32,8 +32,8 @@ Traceback (most recent call last):
     reraise(exc_type, exc_value, tb)
   File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 37, in reraise
     raise value.with_traceback(tb)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/templates/user.html", line 17, in template
-    <p><a href="{{ url_for('unfollow', username=user.username }}">Unfollow</a></p>
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/templates/user.html", line 15, in template
+    <p><a href="{{ url_for('follow', username=user.username }}">Follow</a></p>
   File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/environment.py", line 497, in _parse
     return Parser(self, source, name, encode_filename(filename)).parse()
   File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 901, in parse
@@ -50,8 +50,8 @@ Traceback (most recent call last):
     rv = self.parse_statement()
   File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 130, in parse_statement
     return getattr(self, 'parse_' + self.stream.current.value)()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 223, in parse_if
-    drop_needle=True)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 212, in parse_if
+    node.body = self.parse_statements(('name:elif', 'name:else',
   File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 165, in parse_statements
     result = self.subparse(end_tokens)
   File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 875, in subparse
