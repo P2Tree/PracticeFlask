@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_httpauth import HTTPTokenAuth, HTTPBasicAuth
+from flask_mail import Mail
 
 import logging
 from logging.handlers import RotatingFileHandler
@@ -35,6 +36,9 @@ app.logger.addHandler(file_handler)
 
 app.logger.setLevel(logging.INFO)
 app.logger.info('Microblog startup')
+
+# 邮件功能
+mail = Mail(app)
 
 
 # 注册到Flask中的模块
