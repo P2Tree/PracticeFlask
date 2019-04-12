@@ -5,6 +5,7 @@ from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_httpauth import HTTPTokenAuth, HTTPBasicAuth
 from flask_mail import Mail
+from flask_bootstrap import Bootstrap
 
 import logging
 from logging.handlers import RotatingFileHandler
@@ -39,6 +40,8 @@ app.logger.info('Microblog startup')
 
 # 邮件功能
 mail = Mail(app)
+
+bootstrap = Bootstrap(app)
 
 
 # 注册到Flask中的模块
