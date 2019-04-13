@@ -29,7 +29,7 @@
 - [x] 8th Chapter: **Followers**, complete date: 2019/4/4
 - [x] 9th Chapter: **Pagination**, complete date: 2019/4/8
 - [x] 10th Chapter: **Email Support: 2019/4/11
-- [] 11th Chapter: **Facelift**
+- [x] 11th Chapter: **Facelift**: 2019/4/12
 - [] 12th Chapter: **Dates and Times**
 - [] 13th Chapter: **l18n and L10n**
 - [] 14th Chapter: **Ajax**
