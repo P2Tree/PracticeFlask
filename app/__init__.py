@@ -6,6 +6,7 @@ from flask_login import LoginManager
 from flask_httpauth import HTTPTokenAuth, HTTPBasicAuth
 from flask_mail import Mail
 from flask_bootstrap import Bootstrap
+from flask_moment import Moment
 
 import logging
 from logging.handlers import RotatingFileHandler
@@ -43,6 +44,7 @@ mail = Mail(app)
 
 bootstrap = Bootstrap(app)
 
+moment = Moment(app)
 
 # 注册到Flask中的模块
 from app import routes, models, errors #放到底部，避免循环导入
