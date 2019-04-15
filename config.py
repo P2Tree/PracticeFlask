@@ -22,3 +22,6 @@ class Config(object):
 
     # 分页，配置每页展示的数据列表长度
     POSTS_PER_PAGE = 3
+
+    # 国际化
+    LANGUAGES = ['zh_CN', 'en', 'es']

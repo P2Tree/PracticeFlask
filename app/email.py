@@ -2,6 +2,7 @@ from flask_mail import Message
 from flask import render_template
 from app import mail, app
 from threading import Thread
+from flask_babel import _
 
 # 异步发送邮件
 # 参数app是将上下文传递到线程中
@@ -20,7 +21,7 @@ def send_email(subject, sender, recipients, text_body, html_body):
 def send_password_reset_email(user):
     token = user.get_reset_password_token()
     # 提供txt和html两种版本的邮件格式，适应不同的客户端
-    send_email('[Microblog] Reset Your Password',
+    send_email(_('[Microblog] Reset Your Password'),
             sender=app.config['ADMINS'][0],
             recipients=[user.email],
             text_body=render_template('email/reset_password.txt', user=user, token=token),
