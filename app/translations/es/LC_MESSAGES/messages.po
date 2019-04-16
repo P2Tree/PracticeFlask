@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-04-15 22:20+0800\n"
+"POT-Creation-Date: 2019-04-16 20:48+0800\n"
 "PO-Revision-Date: 2017-09-29 23:25-0700\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -26,55 +26,55 @@ msgstr "Por favor ingrese para acceder a esta página."
 msgid "[Microblog] Reset Your Password"
 msgstr "[Microblog] Nueva Contraseña"
 
-#: app/routes.py:33
+#: app/routes.py:36
 msgid "Your post is now live"
 msgstr ""
 
-#: app/routes.py:59
+#: app/routes.py:62
 msgid "Invalid username or password"
 msgstr "Nombre de usuario o contraseña inválidos"
 
-#: app/routes.py:86
+#: app/routes.py:89
 msgid "Congratulations, you are now a registered user!"
 msgstr "¡Felicitaciones, ya eres un usuario registrado!"
 
-#: app/routes.py:110
+#: app/routes.py:113
 msgid "Your changes have been saved."
 msgstr "Tus cambios han sido salvados."
 
-#: app/routes.py:125
+#: app/routes.py:128
 #, python-format
 msgid "User %(username)s not found."
 msgstr "El usuario %(username)s no ha sido encontrado."
 
-#: app/routes.py:128
+#: app/routes.py:131
 msgid "You cannot follow yourself!"
 msgstr "¡No te puedes seguir a tí mismo!"
 
-#: app/routes.py:133
+#: app/routes.py:136
 #, python-format
 msgid "You are following %(username)s!"
 msgstr "¡Ahora estás siguiendo a %(username)s!"
 
-#: app/routes.py:142
+#: app/routes.py:145
 #, python-format
 msgid "User %(username)s not found"
 msgstr ""
 
-#: app/routes.py:145
+#: app/routes.py:148
 msgid "You cannot unfollow yourself!"
 msgstr "¡No te puedes dejar de seguir a tí mismo!"
 
-#: app/routes.py:150
+#: app/routes.py:153
 #, python-format
 msgid "You are not following %(username)s."
 msgstr "No estás siguiendo a %(username)s."
 
-#: app/routes.py:184
+#: app/routes.py:187
 msgid "Check your email for the instructions to reset your password"
 msgstr "Busca en tu email las instrucciones para crear una nueva contraseña"
 
-#: app/routes.py:200
+#: app/routes.py:203
 msgid "Your password has been reset."
 msgstr "Tu contraseña ha sido cambiada."
 

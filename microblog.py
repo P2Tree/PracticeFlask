@@ -1,6 +1,9 @@
 from app import app, db
 from app.models import User, Post
 
+# 自己写的命令
+from app import cli
+
 # 为flask shell命令准备的上下文
 @app.shell_context_processor
 def make_shell_context():

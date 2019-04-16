@@ -55,9 +55,9 @@ babel = Babel(app)
 @babel.localeselector
 def get_locale():
     # 解析请求中的accept_languages头部表，内含浏览器希望的语言的权重，best_match是选取最佳的匹配语言
-    #return request.accept_languages.best_match(app.config['LANGUAGES'])
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
     # 强制指定语言，不能带国家，比如中文，不能写zh_CN，只能写zh
-    return 'zh'
+    #return 'zh'
 
 # 注册到Flask中的模块
 from app import routes, models, errors #放到底部，避免循环导入

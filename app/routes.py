@@ -10,7 +10,7 @@ from app import db
 from datetime import datetime
 from app import auth
 import base64
-from flask_babel import _
+from flask_babel import _, get_locale
 
 @app.before_request
 def before_request():
@@ -20,6 +20,9 @@ def before_request():
         # 在调用current_user时，flask-login已经自动将current_user添加到数据库会话，
         # 所以不需要写db.session.add()
         db.session.commit()
+
+    # 国际化，设置语言
+    g.locale = str(get_locale())
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
