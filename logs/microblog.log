@@ -52,3 +52,5 @@ AttributeError: 'tuple' object has no attribute 'start'
 2019-04-16 20:47:53,897 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43
 2019-04-16 20:48:15,954 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43
 2019-04-16 20:48:27,193 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43
+2019-04-16 20:56:32,944 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43
+2019-04-16 20:56:38,556 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43
