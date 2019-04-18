@@ -32,7 +32,7 @@
 - [x] 11th Chapter: **Facelift**: 2019/4/12
 - [x] 12th Chapter: **Dates and Times**: 2019/4/13
 - [x] 13th Chapter: **l18n and L10n**: 2019/4/15 ~ 2019/4/16
-- [] 14th Chapter: **Ajax**
+- [x] 14th Chapter: **Ajax**: 2019/4/17 ~ 2019/4/18
 - [] 15th Chapter: **A Better Application Structure**
 - [] 16th Chapter: **Full-Text Search**
 - [] 17th Chapter: **Deployment on Linux**

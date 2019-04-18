@@ -25,3 +25,7 @@ class Config(object):
 
     # 国际化
     LANGUAGES = ['zh_CN', 'en', 'es']
+
+    # 微软翻译API，实际上我没有注册，所以这块不生效，实际需要使用时，要设置环境变量
+    # export MS_TRANSLATOR_KEY=<paste-your-key-here>
+    MS_TRANSLATOR_KEY = os.environ.get('MS_TRANSLATOR_KEY')

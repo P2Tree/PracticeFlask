@@ -1,9 +1,10 @@
-from flask import request, jsonify, g
+from flask import request, jsonify, g, jsonify
 from flask import render_template, flash, redirect, url_for
 from app import app
 from app.forms import LoginForm, RegistrationForm, EditProfileForm, PostForm, ResetPasswordRequestForm, ResetPasswordForm
 from app.models import User, Post
 from app.email import send_password_reset_email
+from app.translate import translate
 from werkzeug.urls import url_parse
 from flask_login import current_user, login_user, logout_user, login_required
 from app import db
@@ -11,6 +12,8 @@ from datetime import datetime
 from app import auth
 import base64
 from flask_babel import _, get_locale
+from guess_language import guess_language
+
 
 @app.before_request
 def before_request():
@@ -30,7 +33,12 @@ def before_request():
 def index():
     form = PostForm()
     if form.validate_on_submit():
-        post = Post(body=form.post.data, author=current_user)
+        # 自动监测提交的post内容是什么语言
+        language = guess_language(form.post.data)
+        # 如果监测失败，则设置为空
+        if language == 'UNKNOWN' or len(language) > 5:
+            language = ''
+        post = Post(body=form.post.data, author=current_user, language=language)
         db.session.add(post)
         db.session.commit()
         flash(_('Your post is now live'))
@@ -203,6 +211,16 @@ def reset_password(token):
         flash(_('Your password has been reset.'))
         return redirect(url_for('login'))
     return render_template('reset_password.html', form=form)
+
+# 翻译文本的ajax请求响应
+@app.route('/translate', methods=['POST'])
+@login_required
+def translate_text():
+    # 这里的POST请求并不是表单数据，所以不能用Flask-WTF来解析，只能通过requests。form来获取
+    # jsonify用来将字典转换为JSON格式的有效载荷
+    return jsonify({'text': translate(requests.form['text'],
+                                      requests.form['source_language'],
+                                      requests.form['dest_language'])})
 
 # 通过API获取token
 @app.route('/api/token')
