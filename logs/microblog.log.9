@@ -1,4 +1,4 @@
-2019-04-07 21:17:02,775 ERROR: Exception on /user/ylm [GET] [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py:1761
+2019-04-08 20:59:48,657 ERROR: Exception on /user/ylm [GET] [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py:1761
 Traceback (most recent call last):
   File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,7 +14,7 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_login/utils.py", line 261, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/routes.py", line 83, in user
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/routes.py", line 96, in user
     return render_template('user.html', user=user, posts=posts)
   File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/templating.py", line 134, in render_template
     return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),

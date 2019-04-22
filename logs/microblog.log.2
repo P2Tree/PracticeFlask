@@ -1,4 +1,4 @@
-2019-04-08 21:14:42,037 ERROR: Exception on /user/ylm [GET] [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py:1761
+2019-04-18 21:00:41,436 ERROR: Exception on /index [GET] [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py:1761
 Traceback (most recent call last):
   File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,106 +14,99 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_login/utils.py", line 261, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/routes.py", line 96, in user
-    return render_template('user.html', user=user, posts=posts)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/templating.py", line 134, in render_template
-    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/environment.py", line 869, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/environment.py", line 830, in get_template
-    return self._load_template(name, self.make_globals(globals))
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/environment.py", line 804, in _load_template
-    template = self.loader.load(self, name, globals)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/loaders.py", line 125, in load
-    code = environment.compile(source, name, filename)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/environment.py", line 591, in compile
-    self.handle_exception(exc_info, source_hint=source_hint)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/main/routes.py", line 58, in index
+    next_url=next_url, prev_url=prev_url)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/templating.py", line 135, in render_template
+    context, ctx.app)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/templating.py", line 117, in _render
+    rv = template.render(context)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
   File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/environment.py", line 780, in handle_exception
     reraise(exc_type, exc_value, tb)
   File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 37, in reraise
     raise value.with_traceback(tb)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/templates/user.html", line 17, in template
-    <p><a href="{{ url_for('unfollow', username=user.username }}">Unfollow</a></p>
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/environment.py", line 497, in _parse
-    return Parser(self, source, name, encode_filename(filename)).parse()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 901, in parse
-    result = nodes.Template(self.subparse(), lineno=1)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 883, in subparse
-    rv = self.parse_statement()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 130, in parse_statement
-    return getattr(self, 'parse_' + self.stream.current.value)()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 268, in parse_block
-    node.body = self.parse_statements(('name:endblock',), drop_needle=True)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 165, in parse_statements
-    result = self.subparse(end_tokens)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 883, in subparse
-    rv = self.parse_statement()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 130, in parse_statement
-    return getattr(self, 'parse_' + self.stream.current.value)()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 223, in parse_if
-    drop_needle=True)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 165, in parse_statements
-    result = self.subparse(end_tokens)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 875, in subparse
-    add_data(self.parse_tuple(with_condexpr=True))
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 620, in parse_tuple
-    args.append(parse())
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 432, in parse_expression
-    return self.parse_condexpr()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 437, in parse_condexpr
-    expr1 = self.parse_or()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 450, in parse_or
-    left = self.parse_and()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 459, in parse_and
-    left = self.parse_not()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 470, in parse_not
-    return self.parse_compare()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 474, in parse_compare
-    expr = self.parse_math1()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 496, in parse_math1
-    left = self.parse_concat()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 507, in parse_concat
-    args = [self.parse_math2()]
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 517, in parse_math2
-    left = self.parse_pow()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 528, in parse_pow
-    left = self.parse_unary()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 547, in parse_unary
-    node = self.parse_postfix(node)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 676, in parse_postfix
-    node = self.parse_call(node)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 785, in parse_call
-    value = self.parse_expression()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 432, in parse_expression
-    return self.parse_condexpr()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 437, in parse_condexpr
-    expr1 = self.parse_or()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 450, in parse_or
-    left = self.parse_and()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 459, in parse_and
-    left = self.parse_not()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 470, in parse_not
-    return self.parse_compare()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 474, in parse_compare
-    expr = self.parse_math1()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 496, in parse_math1
-    left = self.parse_concat()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 507, in parse_concat
-    args = [self.parse_math2()]
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 517, in parse_math2
-    left = self.parse_pow()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 528, in parse_pow
-    left = self.parse_unary()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 547, in parse_unary
-    node = self.parse_postfix(node)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 672, in parse_postfix
-    node = self.parse_subscript(node)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 700, in parse_subscript
-    next(self.stream)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/lexer.py", line 359, in __next__
-    self.current = next(self._iter)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/lexer.py", line 562, in wrap
-    for lineno, token, value in stream:
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/lexer.py", line 690, in tokeniter
-    filename)
-jinja2.exceptions.TemplateSyntaxError: unexpected '}', expected ')'
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/templates/index.html", line 2, in top-level template code
+    {% import 'bootstrap/wtf.html' as wtf %}
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
+    {%- block html %}
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
+    {% block body -%}
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 21, in block "body"
+    {% block navbar %}
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/templates/base.html", line 17, in block "navbar"
+    <a class="navbar-brand" href="{{ url_for('index') }}">Microblog</a>
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/helpers.py", line 356, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 2061, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/helpers.py", line 345, in url_for
+    force_external=external)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/werkzeug/routing.py", line 2182, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'index'. Did you mean 'main.index' instead?
+2019-04-18 21:05:36,642 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43
+2019-04-18 21:05:41,537 ERROR: Exception on /index [GET] [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py:1761
+Traceback (most recent call last):
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/main/routes.py", line 58, in index
+    next_url=next_url, prev_url=prev_url)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/templating.py", line 135, in render_template
+    context, ctx.app)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/templating.py", line 117, in _render
+    rv = template.render(context)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/templates/index.html", line 2, in top-level template code
+    {% import 'bootstrap/wtf.html' as wtf %}
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
+    {%- block html %}
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
+    {% block body -%}
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 21, in block "body"
+    {% block navbar %}
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/templates/base.html", line 22, in block "navbar"
+    <li><a href="{{ url_for('explore') }}">{{ _('Explore') }}</a></li>
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/helpers.py", line 356, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 2061, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/helpers.py", line 345, in url_for
+    force_external=external)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/werkzeug/routing.py", line 2182, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'explore'. Did you mean 'main.explore' instead?
+2019-04-18 21:06:43,304 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43

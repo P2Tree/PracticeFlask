@@ -4,7 +4,7 @@ from time import time
 from app import db, login
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from app import app
+from flask import current_app
 
 from hashlib import md5
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
@@ -59,13 +59,13 @@ class User(UserMixin, db.Model):
 
     # 为API授权登陆提供的TOKEN生成接口
     def generate_auth_token(self, expiration: object = 600) -> object:
-        s = Serializer(app.config['SECRET_KEY'], expires_in=expiration)
+        s = Serializer(current_app.config['SECRET_KEY'], expires_in=expiration)
         return s.dumps({ 'id': self.id })
 
     # 为API授权登陆提供的TOKEN验证接口
     @staticmethod
     def verify_auth_token(token):
-        s = Serializer(app.config['SECRET_KEY'])
+        s = Serializer(current_app.config['SECRET_KEY'])
         try:
             data = s.loads(token)
         except SignatureExpired:
@@ -109,7 +109,7 @@ class User(UserMixin, db.Model):
         # 注意到，这个encode中的参数algorithm不带s
         # utf-8是必须的，因为encode会按照字节序列返回，而在应用中，使用字符串更方便
         return jwt.encode({'reset_password': self.id, 'exp': time() + expires_in},
-                        app.config['SECRET_KEY'], algorithm='HS256').decode('utf-8')
+                        current_app.config['SECRET_KEY'], algorithm='HS256').decode('utf-8')
 
     # 验证重置密码的token
     @staticmethod
@@ -117,7 +117,7 @@ class User(UserMixin, db.Model):
         try:
             # 注意到，这个decode中的参数algorithms带s
             # decode验证不通过会触发异常，所以放到try中
-            id = jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])['reset_password']
+            id = jwt.decode(token, current_app.config['SECRET_KEY'], algorithms=['HS256'])['reset_password']
         except:
             return
         # 获取到提取id对应的用户
