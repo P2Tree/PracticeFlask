@@ -36,3 +36,11 @@ class Config(object):
     # 然而这个环境变量里边的key值是保密的，所以不应该卸载config.py中，下边声明的变量应该写在.env文件中，并不要包含在源代码管理中
     # export MS_TRANSLATOR_KEY=<paste-your-key-here>
     MS_TRANSLATOR_KEY = os.environ.get('MS_TRANSLATOR_KEY') or None
+
+    # 添加全局搜索引擎的URL，使用elasticsearch
+    # 需要安装elasticsearch软件，在MacOS上是：brew install elasticsearch
+    # 还需要安装python的elasticsearch客户端工具包
+    # 我这里写为获取环境变量值，否则为None，也就是不启动该功能，这个值是elasticsearch的默认端口
+    # 需要在.env中设置环境变量的值：ELASTICSEARCH_URL=http://localhost:9200
+    ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL') or None
+

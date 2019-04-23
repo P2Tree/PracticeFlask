@@ -34,14 +34,14 @@
 - [x] 13th Chapter: **l18n and L10n**: 2019/4/15 ~ 2019/4/16
 - [x] 14th Chapter: **Ajax**: 2019/4/17 ~ 2019/4/18
 - [x] 15th Chapter: **A Better Application Structure**: 2019/4/19, 2019/4/22
-- [] 16th Chapter: **Full-Text Search**
-- [] 17th Chapter: **Deployment on Linux**
-- [] 18th Chapter: **Deployment on Heroku**
-- [] 19th Chapter: **Deployment on Docker Containers**
-- [] 20th Chapter: **Some JavaScript Magic**
-- [] 21th Chapter: **User Notifications**
-- [] 22th Chapter: **Background Jobs**
-- [] 23th Chapter: **Application Programming Interfaces(APIs)**
+- [ ] 16th Chapter: **Full-Text Search**: 2019/4/23
+- [ ] 17th Chapter: **Deployment on Linux**
+- [ ] 18th Chapter: **Deployment on Heroku**
+- [ ] 19th Chapter: **Deployment on Docker Containers**
+- [ ] 20th Chapter: **Some JavaScript Magic**
+- [ ] 21th Chapter: **User Notifications**
+- [ ] 22th Chapter: **Background Jobs**
+- [ ] 23th Chapter: **Application Programming Interfaces(APIs)**
 
 
 

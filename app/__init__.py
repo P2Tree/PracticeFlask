@@ -13,6 +13,7 @@ from flask_babel import lazy_gettext as _l
 import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
 import os
+from elasticsearch import Elasticsearch
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -47,6 +48,10 @@ def create_app(config_class=Config):
 
     from app.main import bp as main_bp
     app.register_blueprint(main_bp)
+
+    # 定义了一个app对象没有的属性，用来存储elasticsearch的实例
+    app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']]) \
+        if app.config['ELASTICSEARCH_URL'] else None
 
     if not app.debug and not app.testing:
         if app.config['MAIL_SERVER']:
