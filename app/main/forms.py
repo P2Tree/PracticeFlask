@@ -27,3 +27,19 @@ class PostForm(FlaskForm):
     post = TextAreaField(_l('Say something'), validators=[DataRequired(), Length(min=1, max=140)])
     submit = SubmitField(_l('Submit'))
 
+class SearchForm(FlaskForm):
+    q = StringField(_l('Search'), validators=[DataRequired()])
+
+    # 通过GET请求的表单，所以不需要submit
+
+    def __init__(self, *args, **kwargs):
+        # 需要指定GET请求提交的表单在查询字符串中传递字段值
+        if 'formdata' not in kwargs:
+            kwargs['formdata'] = request.args
+
+        # 需要指定禁用CSRF保护，因为是GET请求
+        if 'csrf_enabled' not in kwargs:
+            kwargs['csrf_enabled'] = False
+        super(SearchForm, self).__init__(*args, **kwargs)
+
+

@@ -1,4 +1,4 @@
-2019-04-18 21:00:41,436 ERROR: Exception on /index [GET] [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py:1761
+2019-04-18 21:23:55,944 ERROR: Exception on /index [GET] [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py:1761
 Traceback (most recent call last):
   File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
     response = self.full_dispatch_request()
@@ -12,36 +12,75 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_login/utils.py", line 261, in decorated_view
-    return func(*args, **kwargs)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/main/routes.py", line 58, in index
-    next_url=next_url, prev_url=prev_url)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/templating.py", line 135, in render_template
-    context, ctx.app)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/templating.py", line 117, in _render
-    rv = template.render(context)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/asyncsupport.py", line 76, in render
-    return original_render(self, *args, **kwargs)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1008, in render
-    return self.environment.handle_exception(exc_info, True)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/environment.py", line 780, in handle_exception
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_login/utils.py", line 260, in decorated_view
+    return current_app.login_manager.unauthorized()
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_login/login_manager.py", line 175, in unauthorized
+    redirect_url = make_login_url(login_view, next_url=request.url)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_login/utils.py", line 112, in login_url
+    base = expand_login_view(login_view)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_login/utils.py", line 89, in expand_login_view
+    return url_for(login_view)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/helpers.py", line 356, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 2061, in handle_url_build_error
     reraise(exc_type, exc_value, tb)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 37, in reraise
-    raise value.with_traceback(tb)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/templates/index.html", line 2, in top-level template code
-    {% import 'bootstrap/wtf.html' as wtf %}
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/templates/base.html", line 1, in top-level template code
-    {% extends 'bootstrap/base.html' %}
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
-    {% block doc -%}
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
-    {%- block html %}
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
-    {% block body -%}
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 21, in block "body"
-    {% block navbar %}
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/templates/base.html", line 17, in block "navbar"
-    <a class="navbar-brand" href="{{ url_for('index') }}">Microblog</a>
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/helpers.py", line 345, in url_for
+    force_external=external)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/werkzeug/routing.py", line 2182, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'login'. Did you mean 'auth.login' instead?
+2019-04-18 21:24:03,493 ERROR: Exception on /index [GET] [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py:1761
+Traceback (most recent call last):
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_login/utils.py", line 260, in decorated_view
+    return current_app.login_manager.unauthorized()
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_login/login_manager.py", line 175, in unauthorized
+    redirect_url = make_login_url(login_view, next_url=request.url)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_login/utils.py", line 112, in login_url
+    base = expand_login_view(login_view)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_login/utils.py", line 89, in expand_login_view
+    return url_for(login_view)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/helpers.py", line 356, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 2061, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/helpers.py", line 345, in url_for
+    force_external=external)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/werkzeug/routing.py", line 2182, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'login'. Did you mean 'auth.login' instead?
+2019-04-22 21:42:58,871 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:83
+2019-04-22 21:43:33,998 ERROR: Exception on /auth/login [POST] [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py:1761
+Traceback (most recent call last):
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/auth/routes.py", line 32, in login
+    next_page = url_for('index')
   File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/helpers.py", line 356, in url_for
     return appctx.app.handle_url_build_error(error, endpoint, values)
   File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 2061, in handle_url_build_error
@@ -53,60 +92,16 @@ Traceback (most recent call last):
   File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/werkzeug/routing.py", line 2182, in build
     raise BuildError(endpoint, values, method, self)
 werkzeug.routing.BuildError: Could not build url for endpoint 'index'. Did you mean 'main.index' instead?
-2019-04-18 21:05:36,642 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43
-2019-04-18 21:05:41,537 ERROR: Exception on /index [GET] [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py:1761
-Traceback (most recent call last):
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
-    raise value
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_login/utils.py", line 261, in decorated_view
-    return func(*args, **kwargs)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/main/routes.py", line 58, in index
-    next_url=next_url, prev_url=prev_url)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/templating.py", line 135, in render_template
-    context, ctx.app)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/templating.py", line 117, in _render
-    rv = template.render(context)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/asyncsupport.py", line 76, in render
-    return original_render(self, *args, **kwargs)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1008, in render
-    return self.environment.handle_exception(exc_info, True)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/environment.py", line 780, in handle_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 37, in reraise
-    raise value.with_traceback(tb)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/templates/index.html", line 2, in top-level template code
-    {% import 'bootstrap/wtf.html' as wtf %}
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/templates/base.html", line 1, in top-level template code
-    {% extends 'bootstrap/base.html' %}
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
-    {% block doc -%}
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
-    {%- block html %}
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
-    {% block body -%}
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 21, in block "body"
-    {% block navbar %}
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/templates/base.html", line 22, in block "navbar"
-    <li><a href="{{ url_for('explore') }}">{{ _('Explore') }}</a></li>
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/helpers.py", line 356, in url_for
-    return appctx.app.handle_url_build_error(error, endpoint, values)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 2061, in handle_url_build_error
-    reraise(exc_type, exc_value, tb)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
-    raise value
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/helpers.py", line 345, in url_for
-    force_external=external)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/werkzeug/routing.py", line 2182, in build
-    raise BuildError(endpoint, values, method, self)
-werkzeug.routing.BuildError: Could not build url for endpoint 'explore'. Did you mean 'main.explore' instead?
-2019-04-18 21:06:43,304 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43
+2019-04-22 21:44:06,359 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:83
+2019-04-23 21:00:12,543 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:88
+2019-04-23 21:07:36,019 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:88
+2019-04-23 21:09:18,187 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:88
+2019-04-23 21:09:36,576 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:88
+2019-04-23 21:13:17,332 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:88
+2019-04-23 21:15:43,790 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:88
+2019-04-23 21:17:02,702 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:88
+2019-04-23 21:17:33,728 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:88
+2019-04-23 21:18:59,309 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:88
+2019-04-23 21:20:21,729 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:88
+2019-04-23 21:20:46,536 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:88
+2019-04-23 21:21:07,975 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:88

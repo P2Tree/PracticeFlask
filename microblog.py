@@ -1,5 +1,6 @@
 from app import create_app, db
 from app.models import User, Post
+import os
 
 # 自己写的命令
 from app import cli

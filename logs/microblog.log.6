@@ -1,4 +1,65 @@
-2019-04-08 21:14:42,037 ERROR: Exception on /user/ylm [GET] [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py:1761
+2019-04-11 22:04:31,075 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:38
+2019-04-11 22:04:36,518 ERROR: Exception on /reset_password_request [POST] [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py:1761
+Traceback (most recent call last):
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/routes.py", line 176, in reset_password_request
+    send_password_reset_email(user)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/email.py", line 27, in send_password_reset_email
+    html_body=render_template('email/reset_password.html', user=user, token=token))
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/email.py", line 18, in send_email
+    Thread(target=send_async_email, args=(app, msg).start)
+AttributeError: 'tuple' object has no attribute 'start'
+2019-04-11 22:05:13,451 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:38
+2019-04-11 22:11:07,959 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:38
+2019-04-11 22:14:47,225 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:38
+2019-04-11 22:24:34,603 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:38
+2019-04-11 22:27:03,556 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:38
+2019-04-11 22:27:43,428 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:38
+2019-04-12 21:52:38,140 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:39
+2019-04-12 22:22:18,498 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:39
+2019-04-12 22:22:19,085 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:39
+2019-04-14 21:01:11,846 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:40
+2019-04-15 21:37:04,566 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:41
+2019-04-15 21:40:22,525 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:41
+2019-04-15 21:41:22,012 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:41
+2019-04-15 21:44:49,238 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:41
+2019-04-15 21:50:25,146 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:41
+2019-04-15 21:54:37,771 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:41
+2019-04-15 21:55:39,807 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:41
+2019-04-15 21:56:00,993 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:41
+2019-04-15 21:56:30,593 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:41
+2019-04-15 22:03:30,164 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43
+2019-04-15 22:10:03,783 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43
+2019-04-15 22:16:02,011 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43
+2019-04-15 22:18:18,643 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43
+2019-04-15 22:20:22,025 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43
+2019-04-15 22:20:49,409 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43
+2019-04-15 22:21:54,173 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43
+2019-04-16 20:46:38,006 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43
+2019-04-16 20:47:14,845 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43
+2019-04-16 20:47:26,684 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43
+2019-04-16 20:47:53,897 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43
+2019-04-16 20:48:15,954 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43
+2019-04-16 20:48:27,193 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43
+2019-04-16 20:56:32,944 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43
+2019-04-16 20:56:38,556 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43
+2019-04-17 20:18:39,054 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43
+2019-04-17 20:18:45,954 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43
+2019-04-17 20:24:36,049 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43
+2019-04-17 20:25:32,433 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43
+2019-04-18 20:00:56,746 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43
+2019-04-18 20:01:15,220 ERROR: Exception on /translate [POST] [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py:1761
 Traceback (most recent call last):
   File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,106 +75,8 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_login/utils.py", line 261, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/routes.py", line 96, in user
-    return render_template('user.html', user=user, posts=posts)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/templating.py", line 134, in render_template
-    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/environment.py", line 869, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/environment.py", line 830, in get_template
-    return self._load_template(name, self.make_globals(globals))
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/environment.py", line 804, in _load_template
-    template = self.loader.load(self, name, globals)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/loaders.py", line 125, in load
-    code = environment.compile(source, name, filename)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/environment.py", line 591, in compile
-    self.handle_exception(exc_info, source_hint=source_hint)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/environment.py", line 780, in handle_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 37, in reraise
-    raise value.with_traceback(tb)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/templates/user.html", line 17, in template
-    <p><a href="{{ url_for('unfollow', username=user.username }}">Unfollow</a></p>
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/environment.py", line 497, in _parse
-    return Parser(self, source, name, encode_filename(filename)).parse()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 901, in parse
-    result = nodes.Template(self.subparse(), lineno=1)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 883, in subparse
-    rv = self.parse_statement()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 130, in parse_statement
-    return getattr(self, 'parse_' + self.stream.current.value)()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 268, in parse_block
-    node.body = self.parse_statements(('name:endblock',), drop_needle=True)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 165, in parse_statements
-    result = self.subparse(end_tokens)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 883, in subparse
-    rv = self.parse_statement()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 130, in parse_statement
-    return getattr(self, 'parse_' + self.stream.current.value)()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 223, in parse_if
-    drop_needle=True)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 165, in parse_statements
-    result = self.subparse(end_tokens)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 875, in subparse
-    add_data(self.parse_tuple(with_condexpr=True))
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 620, in parse_tuple
-    args.append(parse())
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 432, in parse_expression
-    return self.parse_condexpr()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 437, in parse_condexpr
-    expr1 = self.parse_or()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 450, in parse_or
-    left = self.parse_and()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 459, in parse_and
-    left = self.parse_not()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 470, in parse_not
-    return self.parse_compare()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 474, in parse_compare
-    expr = self.parse_math1()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 496, in parse_math1
-    left = self.parse_concat()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 507, in parse_concat
-    args = [self.parse_math2()]
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 517, in parse_math2
-    left = self.parse_pow()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 528, in parse_pow
-    left = self.parse_unary()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 547, in parse_unary
-    node = self.parse_postfix(node)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 676, in parse_postfix
-    node = self.parse_call(node)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 785, in parse_call
-    value = self.parse_expression()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 432, in parse_expression
-    return self.parse_condexpr()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 437, in parse_condexpr
-    expr1 = self.parse_or()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 450, in parse_or
-    left = self.parse_and()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 459, in parse_and
-    left = self.parse_not()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 470, in parse_not
-    return self.parse_compare()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 474, in parse_compare
-    expr = self.parse_math1()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 496, in parse_math1
-    left = self.parse_concat()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 507, in parse_concat
-    args = [self.parse_math2()]
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 517, in parse_math2
-    left = self.parse_pow()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 528, in parse_pow
-    left = self.parse_unary()
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 547, in parse_unary
-    node = self.parse_postfix(node)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 672, in parse_postfix
-    node = self.parse_subscript(node)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/parser.py", line 700, in parse_subscript
-    next(self.stream)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/lexer.py", line 359, in __next__
-    self.current = next(self._iter)
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/lexer.py", line 562, in wrap
-    for lineno, token, value in stream:
-  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/lexer.py", line 690, in tokeniter
-    filename)
-jinja2.exceptions.TemplateSyntaxError: unexpected '}', expected ')'
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/routes.py", line 221, in translate_text
+    return jsonify({'text': translate(requests.form['text'],
+NameError: name 'requests' is not defined
+2019-04-18 21:00:15,564 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43
+2019-04-18 21:00:36,646 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:43

@@ -3,6 +3,9 @@ from flask import current_app
 # 这些方法将在app/models.py中的SearchableMixin类中被调用
 # 不应该手动去调用
 
+# 注：对于elasticsearch工具，需要先在后台启动该工具：
+# > elasticsearch
+
 def add_to_index(index, model):
     if not current_app.elasticsearch:
         return

@@ -1,1 +1,115 @@
-2019-04-08 21:14:38,403 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:37
+2019-04-08 21:15:11,407 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:37
+2019-04-08 21:20:50,573 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:37
+2019-04-09 20:53:26,868 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:38
+2019-04-09 21:20:02,482 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:38
+2019-04-09 21:20:23,635 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:38
+2019-04-11 21:44:24,508 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:38
+2019-04-11 21:45:13,863 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:38
+2019-04-11 21:45:33,011 ERROR: Exception on /reset_password_request [GET] [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py:1761
+Traceback (most recent call last):
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/routes.py", line 181, in reset_password_request
+    return render_template('reset_password_requeset.html', title='Reset Password', form=form)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/templating.py", line 134, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/environment.py", line 869, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/environment.py", line 830, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/environment.py", line 804, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/jinja2/loaders.py", line 113, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/templating.py", line 58, in get_source
+    return self._get_source_fast(environment, template)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/templating.py", line 86, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: reset_password_requeset.html
+2019-04-11 21:46:36,443 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:38
+2019-04-11 21:48:56,858 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:38
+2019-04-11 21:50:57,310 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:38
+2019-04-11 21:51:07,374 ERROR: Exception on /reset_password_request [POST] [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py:1761
+Traceback (most recent call last):
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/routes.py", line 176, in reset_password_request
+    send_password_reset_email(user)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/email.py", line 14, in send_password_reset_email
+    send_email('[Microblog] Reset Your Password',
+NameError: name 'send_email' is not defined
+2019-04-11 21:51:56,527 INFO: Microblog startup [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/__init__.py:38
+2019-04-11 21:52:01,608 ERROR: Exception on /reset_password_request [POST] [in /Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py:1761
+Traceback (most recent call last):
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_mail.py", line 492, in send
+    message.send(connection)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_mail.py", line 427, in send
+    connection.send(self)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_mail.py", line 192, in send
+    message.rcpt_options)
+  File "/usr/local/Cellar/python/3.7.1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/smtplib.py", line 852, in sendmail
+    self.ehlo_or_helo_if_needed()
+  File "/usr/local/Cellar/python/3.7.1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/smtplib.py", line 600, in ehlo_or_helo_if_needed
+    if not (200 <= self.ehlo()[0] <= 299):
+  File "/usr/local/Cellar/python/3.7.1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/smtplib.py", line 440, in ehlo
+    self.putcmd(self.ehlo_msg, name or self.local_hostname)
+  File "/usr/local/Cellar/python/3.7.1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/smtplib.py", line 367, in putcmd
+    self.send(str)
+  File "/usr/local/Cellar/python/3.7.1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/smtplib.py", line 359, in send
+    raise SMTPServerDisconnected('please run connect() first')
+smtplib.SMTPServerDisconnected: please run connect() first
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/routes.py", line 176, in reset_password_request
+    send_password_reset_email(user)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/email.py", line 18, in send_password_reset_email
+    html_body=render_template('email/reset_password.html', user=user, token=token))
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/app/email.py", line 9, in send_email
+    mail.send(msg)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_mail.py", line 492, in send
+    message.send(connection)
+  File "/Users/hanhuijie/WorkStation/2019/Projects/FlaskSSO/venv/lib/python3.7/site-packages/flask_mail.py", line 152, in __exit__
+    self.host.quit()
+  File "/usr/local/Cellar/python/3.7.1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/smtplib.py", line 984, in quit
+    res = self.docmd("quit")
+  File "/usr/local/Cellar/python/3.7.1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/smtplib.py", line 420, in docmd
+    self.putcmd(cmd, args)
+  File "/usr/local/Cellar/python/3.7.1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/smtplib.py", line 367, in putcmd
+    self.send(str)
+  File "/usr/local/Cellar/python/3.7.1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/smtplib.py", line 359, in send
+    raise SMTPServerDisconnected('please run connect() first')
+smtplib.SMTPServerDisconnected: please run connect() first

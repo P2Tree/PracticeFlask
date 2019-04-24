@@ -1,6 +1,6 @@
 from flask import request, jsonify, g, jsonify
 from flask import render_template, flash, redirect, url_for, current_app
-from app.main.forms import EditProfileForm, PostForm
+from app.main.forms import EditProfileForm, PostForm, SearchForm
 from app.models import User, Post
 from app.translate import translate
 from flask_login import current_user, login_required
@@ -12,7 +12,7 @@ from guess_language import guess_language
 from app.main import bp
 
 
-@bp.before_request
+@bp.before_app_request
 def before_request():
     if current_user.is_authenticated:
         # UTC时间
@@ -21,6 +21,9 @@ def before_request():
         # 在调用current_user时，flask-login已经自动将current_user添加到数据库会话，
         # 所以不需要写db.session.add()
         db.session.commit()
+
+        # 指定一个全局的搜索表单，这个表单放在这里，可以保证对每个请求和每个客户端都是独立的
+        g.search_form = SearchForm()
 
     # 国际化，设置语言
     g.locale = str(get_locale())
@@ -144,7 +147,25 @@ def explore():
 def translate_text():
     # 这里的POST请求并不是表单数据，所以不能用Flask-WTF来解析，只能通过requests。form来获取
     # jsonify用来将字典转换为JSON格式的有效载荷
-    return jsonify({'text': translate(requests.form['text'],
-                                      requests.form['source_language'],
-                                      requests.form['dest_language'])})
+    return jsonify({'text': translate(request.form['text'],
+                                      request.form['source_language'],
+                                      request.form['dest_language'])})
+
+# 全局搜索
+@bp.route('/search')
+@login_required
+def search():
+    # 不能用form.validate_on_submit来验证GET请求，因为没有submit
+    if not g.search_form.validate():
+        return redirect(url_for('main.explore'))
+    page = request.args.get('page', 1, type=int)
+    # 获取搜索结果列表
+    posts, total = Post.search(g.search_form.q.data, page, current_app.config['POSTS_PER_PAGE'])
+    # 处理分页
+    next_url = url_for('main.search', q=g.search_form.q.data, page=page + 1) \
+        if total > page * current_app.config['POSTS_PER_PAGE'] else None
+    prev_url = url_for('main.search', q=g.search_form.q.data, page=page - 1) \
+        if page > 1 else None
+    return render_template('search.html', title=_('Search'), posts=posts, next_url=next_url, prev_url=prev_url)
+
 
