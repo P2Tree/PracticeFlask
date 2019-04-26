@@ -35,7 +35,7 @@
 - [x] 14th Chapter: **Ajax**: 2019/4/17 ~ 2019/4/18
 - [x] 15th Chapter: **A Better Application Structure**: 2019/4/19, 2019/4/22
 - [x] 16th Chapter: **Full-Text Search**: 2019/4/23 ~ 2019/4/24
-- [ ] 17th Chapter: **Deployment on Linux**
+- [x] 17th Chapter: **Deployment on Linux**: 2019/4/25 ~ 2019/4/26
 - [ ] 18th Chapter: **Deployment on Heroku**
 - [ ] 19th Chapter: **Deployment on Docker Containers**
 - [ ] 20th Chapter: **Some JavaScript Magic**
