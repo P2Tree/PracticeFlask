@@ -36,8 +36,8 @@
 - [x] 15th Chapter: **A Better Application Structure**: 2019/4/19, 2019/4/22
 - [x] 16th Chapter: **Full-Text Search**: 2019/4/23 ~ 2019/4/24
 - [x] 17th Chapter: **Deployment on Linux**: 2019/4/25 ~ 2019/4/26
-- [ ] 18th Chapter: **Deployment on Heroku**
-- [ ] 19th Chapter: **Deployment on Docker Containers**
+- [x] 18th Chapter: **Deployment on Heroku**: 2019/4/27
+- [x] 19th Chapter: **Deployment on Docker Containers**: 2019/4/28
 - [ ] 20th Chapter: **Some JavaScript Magic**
 - [ ] 21th Chapter: **User Notifications**
 - [ ] 22th Chapter: **Background Jobs**
