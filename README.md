@@ -43,5 +43,10 @@
 - [ ] 22th Chapter: **Background Jobs**
 - [ ] 23th Chapter: **Application Programming Interfaces(APIs)**
 
-
-
+## Using
+- You should create `.env` file which contain some flask environmental arguments, such like:
+    - SECRET KEY : set a very long value
+    - MAIL SERVER : default is localhost
+    - MAIL PORT : default is 8025
+    - MS TRANSLATOR KEY : default is your microsoft translator key here
+    - ELASTICSEARCH URL : default is http://localhost:9200, this function dependent on elasticsearch tool
