@@ -169,3 +169,9 @@ def search():
     return render_template('search.html', title=_('Search'), posts=posts, next_url=next_url, prev_url=prev_url)
 
 
+@bp.route('/user/<username>/popup')
+@login_required
+def user_popup(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    return render_template('user_popup.html', user=user)
+

@@ -38,7 +38,7 @@
 - [x] 17th Chapter: **Deployment on Linux**: 2019/4/25 ~ 2019/4/26
 - [x] 18th Chapter: **Deployment on Heroku**: 2019/4/27
 - [x] 19th Chapter: **Deployment on Docker Containers**: 2019/4/28
-- [ ] 20th Chapter: **Some JavaScript Magic**
+- [x] 20th Chapter: **Some JavaScript Magic**: 2019/5/2
 - [ ] 21th Chapter: **User Notifications**
 - [ ] 22th Chapter: **Background Jobs**
 - [ ] 23th Chapter: **Application Programming Interfaces(APIs)**
