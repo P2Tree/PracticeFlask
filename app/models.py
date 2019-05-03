@@ -31,6 +31,13 @@ class User(UserMixin, db.Model):
     about_me = db.Column(db.String(140))
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
 
+    # 支持私有消息
+    messages_sent = db.relationship('Message', foreign_keys='Message.sender_id',
+                                    backref='author', lazy='dynamic')
+    messages_received = db.relationship('Message', foreign_keys='Message.recipient_id',
+                                        backref='recipient', lazy='dynamic')
+    last_message_read_time = db.Column(db.DateTime)
+
     # 粉丝
     followed = db.relationship(
         'User', # 关联表右侧实体，是被关注的一方，左侧实体，即关注者，是其上级实体
@@ -39,7 +46,6 @@ class User(UserMixin, db.Model):
         secondaryjoin=(followers.c.followed_id == id),  # 通过关联表关联到右侧实体（被关注者）的条件
         backref=db.backref('followers', lazy='dynamic'), lazy='dynamic' # 指定右侧实体如何访问关系
     )
-
 
     # 调试时打印输出
     def __repr__(self):
@@ -124,6 +130,11 @@ class User(UserMixin, db.Model):
         # 获取到提取id对应的用户
         return User.query.get(id)
 
+    # 私有消息功能辅助函数，返回用户有多少条未读私有消息
+    def new_messages(self):
+        last_read_time = self.last_message_read_time or datetime(1900, 1, 1)
+        return Message.query.filter_by(recipient=self).filter(Message.timestamp > last_read_time).count()
+
 # 为了保证数据库变化时自动触发elasticsearch索引动作，而设计的一个mixin类
 # 从而通过SQLAlchemy的事件机制来触发elasticsearch的动作
 # app/search.py中的方法不能外部调用，因为可能会导致数据库和搜索索引内容不一致
@@ -178,6 +189,7 @@ class SearchableMixin(object):
     def delete_index(cls):
         remove_all(cls.__tablename__)
 
+
 # 第一个继承的类，用于指定Post表更新时的触发事件
 class Post(SearchableMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -194,6 +206,7 @@ class Post(SearchableMixin, db.Model):
     def  __repr__(self):
         return '<Post {}>'.format(self.body)
 
+
 # 注册Post的事件处理函数
 db.event.listen(db.session, 'before_commit', Post.before_commit)
 db.event.listen(db.session, 'after_commit', Post.after_commit)
@@ -204,3 +217,17 @@ db.event.listen(db.session, 'after_commit', Post.after_commit)
 def load_user(id):
     return User.query.get(int(id))
 
+
+# 支持私有消息功能
+class Message(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    # 发件人
+    sender_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    # 收件人
+    recipient_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    body = db.Column(db.String(140))
+    # 最后一次阅读私有消息的时间
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow())
+
+    def __repr(self):
+        return '<Message {}>'.format(self.body)
