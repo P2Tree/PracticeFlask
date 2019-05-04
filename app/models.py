@@ -13,6 +13,8 @@ from itsdangerous import BadSignature, SignatureExpired
 import jwt
 from app.search import add_to_index, remove_from_index, query_index, remove_all
 
+import json
+
 # 用户粉丝，使用多对多关系，并且是自引用关系，以下建立一个关联表
 followers = db.Table('followers',
                      db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
@@ -37,6 +39,10 @@ class User(UserMixin, db.Model):
     messages_received = db.relationship('Message', foreign_keys='Message.recipient_id',
                                         backref='recipient', lazy='dynamic')
     last_message_read_time = db.Column(db.DateTime)
+
+    # 私有消息通知
+    notifications = db.RelationshipProperty('Notification',
+                                            backref='user', lazy='dynamic')
 
     # 粉丝
     followed = db.relationship(
@@ -135,6 +141,14 @@ class User(UserMixin, db.Model):
         last_read_time = self.last_message_read_time or datetime(1900, 1, 1)
         return Message.query.filter_by(recipient=self).filter(Message.timestamp > last_read_time).count()
 
+    # 接收私有消息的辅助函数
+    def add_notification(self, name, data):
+        self.notifications.filter_by(name=name).delete()
+        n = Notification(name=name, payload_json=json.dumps(data), user=self)
+        db.session.add(n)
+        return n
+
+
 # 为了保证数据库变化时自动触发elasticsearch索引动作，而设计的一个mixin类
 # 从而通过SQLAlchemy的事件机制来触发elasticsearch的动作
 # app/search.py中的方法不能外部调用，因为可能会导致数据库和搜索索引内容不一致
@@ -231,3 +245,14 @@ class Message(db.Model):
 
     def __repr(self):
         return '<Message {}>'.format(self.body)
+
+# 私有消息的通知
+class Notification(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(128), index=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    timestamp = db.Column(db.Float, index=True, default=time)
+    payload_json = db.Column(db.Text)
+
+    def get_data(self):
+        return json.loads(str(self.payload_json))

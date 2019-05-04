@@ -1,5 +1,5 @@
 from app import create_app, db
-from app.models import User, Post
+from app.models import User, Post, Notification, Message
 import os
 
 # 自己写的命令
@@ -14,7 +14,8 @@ cli.register(app)
 # 为flask shell命令准备的上下文
 @app.shell_context_processor
 def make_shell_context():
-    return {'db': db, 'User': User, 'Post': Post}
+    return {'db': db, 'User': User, 'Post': Post, 'Message': Message,
+            'Notification': Notification}
 
 # if __name__ == "__main__":
     # app.run('127.0.0.1', port=5000, ssl_context=('cert.pem', 'key.pem'))

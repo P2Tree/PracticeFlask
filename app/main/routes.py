@@ -1,7 +1,7 @@
 from flask import request, jsonify, g, jsonify
 from flask import render_template, flash, redirect, url_for, current_app
 from app.main.forms import EditProfileForm, PostForm, SearchForm, MessageForm
-from app.models import User, Post, Message
+from app.models import User, Post, Message, Notification
 from app.translate import translate
 from flask_login import current_user, login_required
 from app import db
@@ -184,6 +184,7 @@ def send_message(recipient):
     if form.validate_on_submit():
         msg = Message(author=current_user, recipient=user, body=form.message.data)
         db.session.add(msg)
+        user.add_notification('unread_message_count', user.new_messages())
         db.session.commit()
         flash(_('Your message has been sent.'))
         return redirect(url_for('main.user', username=recipient))
@@ -196,6 +197,7 @@ def send_message(recipient):
 def messages():
     # 用于标记已读消息
     current_user.last_message_read_time = datetime.utcnow()
+    current_user.add_notification('unread_message_count', 0)
     db.session.commit()
     page = request.args.get('page', 1, type=int)
     messages = current_user.messages_received.order_by(
@@ -207,5 +209,18 @@ def messages():
     return render_template('messages.html', messages=messages.items,
                            next_url=next_url, prev_url=prev_url)
 
-
+# 检查未读通知消息
+@bp.route('/notifications')
+@login_required
+def notifications():
+    # 如果since参数存在，则只返回大于since之后的未读消息
+    since = request.args.get('since', 0.0, type=float)
+    notifications = current_user.notifications.filter(
+        Notification.timestamp > since).order_by(Notification.timestamp.asc())
+    # 返回一个包含用户通知列表的json内容
+    return jsonify([{
+        'name': n.name,
+        'data': n.get_data(),
+        'timestamp': n.timestamp
+    } for n in notifications])
 
