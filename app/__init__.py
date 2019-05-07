@@ -14,6 +14,8 @@ import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
 import os
 from elasticsearch import Elasticsearch
+from redis import Redis
+import rq
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -52,6 +54,10 @@ def create_app(config_class=Config):
     # 定义了一个app对象没有的属性，用来存储elasticsearch的实例
     app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']]) \
         if app.config['ELASTICSEARCH_URL'] else None
+
+    # 初始化app对象的redis
+    app.redis = Redis.from_url(app.config['REDIS_URL'])
+    app.task_queue = rq.Queue('microblog-tasks', connection=app.redis)
 
     if not app.debug and not app.testing:
         if app.config['MAIL_SERVER']:

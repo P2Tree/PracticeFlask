@@ -44,3 +44,6 @@ class Config(object):
     # 需要在.env中设置环境变量的值：ELASTICSEARCH_URL=http://localhost:9200
     ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL') or None
 
+    # Redis连接URL的配置
+    # 如果环境变量未指定，则为本机默认端口和url
+    REDIS_URL = os.environ.get('REDIS_URL') or 'redis://'

@@ -1,5 +1,5 @@
 from app import create_app, db
-from app.models import User, Post, Notification, Message
+from app.models import User, Post, Notification, Message, Task
 import os
 
 # 自己写的命令
@@ -12,10 +12,11 @@ app = create_app()
 cli.register(app)
 
 # 为flask shell命令准备的上下文
+# 这里添加的模型，在flask shell中启动后不需要手动导入
 @app.shell_context_processor
 def make_shell_context():
     return {'db': db, 'User': User, 'Post': Post, 'Message': Message,
-            'Notification': Notification}
+            'Notification': Notification, 'Task': Task}
 
 # if __name__ == "__main__":
     # app.run('127.0.0.1', port=5000, ssl_context=('cert.pem', 'key.pem'))

@@ -40,7 +40,7 @@
 - [x] 19th Chapter: **Deployment on Docker Containers**: 2019/4/28
 - [x] 20th Chapter: **Some JavaScript Magic**: 2019/5/2
 - [x] 21th Chapter: **User Notifications**: 2019/5/3 ~ 2019/5/4
-- [ ] 22th Chapter: **Background Jobs**
+- [x] 22th Chapter: **Background Jobs**: 2019/5/5 ~ 2019/5/7
 - [ ] 23th Chapter: **Application Programming Interfaces(APIs)**
 
 ## Using

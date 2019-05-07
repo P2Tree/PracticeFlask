@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-05-03 16:10+0800\n"
+"POT-Creation-Date: 2019-05-07 20:32+0800\n"
 "PO-Revision-Date: 2019-04-15 21:19+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_Hans_CN\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
 
-#: app/__init__.py:22
+#: app/__init__.py:24
 msgid "Please log in to access this page."
 msgstr "请先登陆"
 
@@ -166,15 +166,15 @@ msgstr "不允许取消关注自己"
 msgid "You are not following %(username)s."
 msgstr "你还没有关注 %(username)s"
 
-#: app/main/routes.py:141 app/templates/base.html:22
+#: app/main/routes.py:141
 msgid "Explore"
 msgstr "探索"
 
-#: app/main/routes.py:188
+#: app/main/routes.py:189
 msgid "Your message has been sent."
 msgstr ""
 
-#: app/main/routes.py:190
+#: app/main/routes.py:191
 msgid "Send Message"
 msgstr ""
 
@@ -185,34 +185,6 @@ msgstr "%(username)s 在 %(when)s 说:"
 
 #: app/templates/_post.html:27
 msgid "Translate"
-msgstr ""
-
-#: app/templates/base.html:4
-msgid "Welcome to Microblog"
-msgstr "欢迎来到Microblog"
-
-#: app/templates/base.html:21
-msgid "Home"
-msgstr "主页"
-
-#: app/templates/base.html:33
-msgid "Login"
-msgstr "登陆"
-
-#: app/templates/base.html:35
-msgid "Profile"
-msgstr "我"
-
-#: app/templates/base.html:36
-msgid "Logout"
-msgstr "登出"
-
-#: app/templates/base.html:37 app/templates/messages.html:4
-msgid "Messages"
-msgstr ""
-
-#: app/templates/base.html:74
-msgid "Error: Could not contact server."
 msgstr ""
 
 #: app/templates/index.html:5
@@ -227,6 +199,10 @@ msgstr "前边的日记"
 #: app/templates/index.html:22 app/templates/user.html:49
 msgid "Older posts"
 msgstr "后边的日记"
+
+#: app/templates/messages.html:4
+msgid "Messages"
+msgstr ""
 
 #: app/templates/messages.html:12
 msgid "Newer messages"
@@ -322,4 +298,22 @@ msgstr "发生了一个未知错误"
 #: app/templates/errors/500.html:5
 msgid "The administrator has been notified. Sorry for the inconvenience!"
 msgstr "已经通知管理员，很抱歉对您的使用造成不便"
+
+#~ msgid "Welcome to Microblog"
+#~ msgstr "欢迎来到Microblog"
+
+#~ msgid "Home"
+#~ msgstr "主页"
+
+#~ msgid "Login"
+#~ msgstr "登陆"
+
+#~ msgid "Profile"
+#~ msgstr "我"
+
+#~ msgid "Logout"
+#~ msgstr "登出"
+
+#~ msgid "Error: Could not contact server."
+#~ msgstr ""
 

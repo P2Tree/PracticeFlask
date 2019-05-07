@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-05-03 16:10+0800\n"
+"POT-Creation-Date: 2019-05-07 20:32+0800\n"
 "PO-Revision-Date: 2017-09-29 23:25-0700\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
 
-#: app/__init__.py:22
+#: app/__init__.py:24
 msgid "Please log in to access this page."
 msgstr "Por favor ingrese para acceder a esta página."
 
@@ -166,15 +166,15 @@ msgstr "¡No te puedes dejar de seguir a tí mismo!"
 msgid "You are not following %(username)s."
 msgstr "No estás siguiendo a %(username)s."
 
-#: app/main/routes.py:141 app/templates/base.html:22
+#: app/main/routes.py:141
 msgid "Explore"
 msgstr "Explorar"
 
-#: app/main/routes.py:188
+#: app/main/routes.py:189
 msgid "Your message has been sent."
 msgstr ""
 
-#: app/main/routes.py:190
+#: app/main/routes.py:191
 msgid "Send Message"
 msgstr ""
 
@@ -185,34 +185,6 @@ msgstr "%(username)s dijo %(when)s"
 
 #: app/templates/_post.html:27
 msgid "Translate"
-msgstr ""
-
-#: app/templates/base.html:4
-msgid "Welcome to Microblog"
-msgstr "Bienvenido a Microblog"
-
-#: app/templates/base.html:21
-msgid "Home"
-msgstr "Inicio"
-
-#: app/templates/base.html:33
-msgid "Login"
-msgstr "Ingresar"
-
-#: app/templates/base.html:35
-msgid "Profile"
-msgstr "Perfil"
-
-#: app/templates/base.html:36
-msgid "Logout"
-msgstr "Salir"
-
-#: app/templates/base.html:37 app/templates/messages.html:4
-msgid "Messages"
-msgstr ""
-
-#: app/templates/base.html:74
-msgid "Error: Could not contact server."
 msgstr ""
 
 #: app/templates/index.html:5
@@ -227,6 +199,10 @@ msgstr "Artículos siguientes"
 #: app/templates/index.html:22 app/templates/user.html:49
 msgid "Older posts"
 msgstr "Artículos previos"
+
+#: app/templates/messages.html:4
+msgid "Messages"
+msgstr ""
 
 #: app/templates/messages.html:12
 msgid "Newer messages"
@@ -370,4 +346,22 @@ msgstr "El administrador ha sido notificado. ¡Lamentamos la inconveniencia!"
 
 #~ msgid "Next results"
 #~ msgstr "Resultados próximos"
+
+#~ msgid "Welcome to Microblog"
+#~ msgstr "Bienvenido a Microblog"
+
+#~ msgid "Home"
+#~ msgstr "Inicio"
+
+#~ msgid "Login"
+#~ msgstr "Ingresar"
+
+#~ msgid "Profile"
+#~ msgstr "Perfil"
+
+#~ msgid "Logout"
+#~ msgstr "Salir"
+
+#~ msgid "Error: Could not contact server."
+#~ msgstr ""
 

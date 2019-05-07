@@ -15,6 +15,9 @@ from app.search import add_to_index, remove_from_index, query_index, remove_all
 
 import json
 
+import redis
+import rq
+
 # 用户粉丝，使用多对多关系，并且是自引用关系，以下建立一个关联表
 followers = db.Table('followers',
                      db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
@@ -52,6 +55,9 @@ class User(UserMixin, db.Model):
         secondaryjoin=(followers.c.followed_id == id),  # 通过关联表关联到右侧实体（被关注者）的条件
         backref=db.backref('followers', lazy='dynamic'), lazy='dynamic' # 指定右侧实体如何访问关系
     )
+
+    # 后台任务
+    tasks = db.relationship('Task', backref='user', lazy='dynamic')
 
     # 调试时打印输出
     def __repr__(self):
@@ -147,6 +153,26 @@ class User(UserMixin, db.Model):
         n = Notification(name=name, payload_json=json.dumps(data), user=self)
         db.session.add(n)
         return n
+
+    # 后台作业的辅助方法
+    # 将任务提交到队列，并添加到数据库
+    def launch_task(self, name, description, *args, **kwargs):
+        rq_job = current_app.task_queue.enqueue('app.tasks.' + name, self.id, *args, **kwargs)
+        task = Task(id=rq_job.get_id(), name=name, description=description, user=self)
+        # 将rq_job id作为主键的task对象添加到数据库中
+        db.session.add(task)
+        # 没有commit，将在高层次的函数中提交
+        return task
+
+    # 后台作业的辅助方法
+    # 返回所有未结束的任务
+    def get_tasks_in_progress(self):
+        return Task.query.filter_by(user=self, complete=False).all()
+
+    # 后台作业的辅助方法
+    # 返回某个指定的仍在运行的任务
+    def get_task_in_progress(self, name):
+        return Task.query.filter_by(name=name, user=self, complete=False).first()
 
 
 # 为了保证数据库变化时自动触发elasticsearch索引动作，而设计的一个mixin类
@@ -256,3 +282,26 @@ class Notification(db.Model):
 
     def get_data(self):
         return json.loads(str(self.payload_json))
+
+# 维护后台任务的数据表
+class Task(db.Model):
+    # 这里的id的类型是string，这是因为我们将以任务id作为主键，而不是默认主键
+    id = db.Column(db.String(36), primary_key=True)
+    name = db.Column(db.String(128), index=True)
+    description = db.Column(db.String(128))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    complete = db.Column(db.Boolean, default=False)
+
+    def get_rq_job(self):
+        try:
+            rq_job = rq.job.Job.fetch(self.id, connection=current_app.redis)
+        except (redis.exceptions.RedisError, rq.exceptions.NoSuchJobError):
+            return None
+        return rq_job
+
+    # 获取job进度
+    def get_progress(self):
+        job = self.get_rq_job()
+        # 如果job不存在，则返回100，如果job中没有progress属性，则返回0
+        return job.meta.get('progress', 0) if job is not None else 100
+
