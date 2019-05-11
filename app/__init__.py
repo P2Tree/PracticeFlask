@@ -40,16 +40,25 @@ def create_app(config_class=Config):
     moment.init_app(app)
     babel.init_app(app)
 
+    # 以下一部分是将blueprint注册到app中
 
+    # 错误处理的blueprint
     from app.errors import bp as errors_bp # 放到这里，避免循环依赖
     app.register_blueprint(errors_bp)
 
+    # web方式用户认证的blueprint
     from app.auth import bp as auth_bp
     app.register_blueprint(auth_bp, url_prefix='/auth')
     # url_prefix是指定这个blueprint中的路由的总前缀
 
+    # 日志系统的主要功能的blueprint
     from app.main import bp as main_bp
     app.register_blueprint(main_bp)
+
+    # rest api接口功能的blueprint
+    from app.api import bp as api_bp
+    app.register_blueprint(api_bp, url_prefix='/api')
+    # 设置总前缀为/api
 
     # 定义了一个app对象没有的属性，用来存储elasticsearch的实例
     app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']]) \

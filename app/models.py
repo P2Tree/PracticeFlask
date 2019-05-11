@@ -4,7 +4,7 @@ from time import time
 from app import db, login
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from flask import current_app
+from flask import current_app, url_for
 
 from hashlib import md5
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
@@ -18,13 +18,50 @@ import json
 import redis
 import rq
 
+import base64
+from datetime import datetime, timedelta
+import os
+
 # 用户粉丝，使用多对多关系，并且是自引用关系，以下建立一个关联表
 followers = db.Table('followers',
                      db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
                      db.Column('followed_id', db.Integer, db.ForeignKey('user.id')),
                      )
 
-class User(UserMixin, db.Model):
+
+# 一个API接口的分页组织结构，用来组织和用户集合类型有关的信息，在User中继承
+# 之所以做一个基类，是因为返回的用户集合类型的请求有多种，比如请求所有用户、
+# 请求某个用户的所有粉丝、请求某个用户的所有关注等
+# 做一个基类，可以一劳永逸
+class PaginatedAPIMixin(object):
+    @staticmethod
+    # 生成用户信息资源的组织
+    def to_collection_dict(query, page, per_page, endpoint, **kwargs):
+        resources = query.paginate(page, per_page, False)
+        data = {
+            'items': [item.to_dict() for item in resources.items],
+            '_meta': {
+                'page': page,
+                'per_page': per_page,
+                'total_pages': resources.pages,
+                'total_items': resources.total
+            },
+            # 超媒体资源链接
+            '_links': {
+                # 为了保证通用性，从endpoint中获取需要发送到url_for的视图函数
+                # **kwargs是发送到路由的其他参数
+                'self': url_for(endpoint, page=page, per_page=per_page,
+                                **kwargs),
+                'next': url_for(endpoint, page=page + 1, per_page=per_page,
+                                **kwargs) if resources.has_next else None,
+                'prev': url_for(endpoint, page=page - 1, per_page=per_page,
+                                **kwargs) if resources.has_prev else None
+            }
+        }
+        return data
+
+
+class User(PaginatedAPIMixin, UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(128), index=True, unique=True)
@@ -59,6 +96,12 @@ class User(UserMixin, db.Model):
     # 后台任务
     tasks = db.relationship('Task', backref='user', lazy='dynamic')
 
+    # 用于API用户验证的token字段
+    # token
+    token = db.Column(db.String(32), index=True, unique=True)
+    # token过期时间
+    token_expiration = db.Column(db.DateTime)
+
     # 调试时打印输出
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -67,7 +110,7 @@ class User(UserMixin, db.Model):
     def set_password(self, password):
         self.password_hash = generate_password_hash(password=password)
 
-    # 校验明文密码与hash密码是否一致
+    # 校验明文密码与hash密码是否一致的辅助函数
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
@@ -173,6 +216,68 @@ class User(UserMixin, db.Model):
     # 返回某个指定的仍在运行的任务
     def get_task_in_progress(self, name):
         return Task.query.filter_by(name=name, user=self, complete=False).first()
+
+    # 将User模型转换成字典格式的表示形式，用于api接口返回用户信息（将会进一步转换为json格式）
+    def to_dict(self, include_email=False):
+        data = {
+            'id': self.id,
+            'username': self.username,
+            # 使用ISO 8601时间格式，通过isoformat方法生成, Z符号指定是UTC时区代码
+            'last_seen': self.last_seen.isoformat() + 'Z',
+            'about_me': self.about_me,
+            'post_count': self.posts.count(),
+            'follower_count': self.followers.count(),
+            'followed_count': self.followed.count(),
+            # _links字段是为了满足纯粹Rest API标准的超媒体要求，添加所有可能的资源访问链接
+            # 超媒体的好处是，客户端不需要记住很多的API请求URL，只需要从每个API请求响应中的
+            # 超媒体段（_links）中获得与这个响应内容相关的API请求URL
+            '_links': {
+                'self': url_for('api.get_user', id=self.id),
+                'followers': url_for('api.get_followers', id=self.id),
+                'followed': url_for('api.get_followed', id=self.id),
+                # 头像资源所对应的URL依然是通过avatar方法访问的avatar url
+                'avatar': self.avatar(128)
+            }
+        }
+        # email地址默认不会返回，除非用户主动指定返回，所以任何用户只能查看自己的email地址
+        if include_email:
+            data['email'] = self.email
+        return data
+
+    # 与to_dict相反的功能，将字典格式的用户信息转换为模型
+    def from_dict(self, data, new_user=False):
+        for field in ['username', 'email', 'about_me']:
+            if field in data:
+                setattr(self, field, data[field])
+            # 如果是新用户的话，返回信息中还会带有密码，用来更新用户的初始密码
+            if new_user and 'password' in data:
+                self.set_password(data['password'])
+
+    # 获取token或更新token
+    def get_token(self, expires_in=3600):
+        now = datetime.utcnow()
+        # 如果已经有token并且到期时间距离当前时间还有大于1分钟的时间，则仍返回当前的token
+        if self.token and self.token_expiration > now + timedelta(seconds=60):
+            return self.token
+        # 以base64编码的24位随机字符串来生成token
+        # 保证token中所有字符都处于可读字符串范围内
+        self.token = base64.b64encode(os.urandom(24)).decode('utf-8')
+        self.token_expiration = now + timedelta(seconds=expires_in)
+        db.session.add(self)
+        return self.token
+
+    # 使token失效，修改过期时间为当前时间减1秒
+    # 这是一种好的安全策略
+    def revoke_token(self):
+        self.token_expiration = datetime.utcnow() - timedelta(seconds=1)
+
+    # 该方法传入token值并检查该token所属的用户，如果token无效或过期，则返回None
+    @staticmethod
+    def check_token(token):
+        user = User.query.filter_by(token=token).first()
+        if user is None or user.token_expiration < datetime.utcnow():
+            return None
+        return user
 
 
 # 为了保证数据库变化时自动触发elasticsearch索引动作，而设计的一个mixin类
@@ -304,4 +409,5 @@ class Task(db.Model):
         job = self.get_rq_job()
         # 如果job不存在，则返回100，如果job中没有progress属性，则返回0
         return job.meta.get('progress', 0) if job is not None else 100
+
 

@@ -4,13 +4,9 @@ from app.auth import bp
 from app.auth.forms import LoginForm, RegistrationForm, ResetPasswordRequestForm, ResetPasswordForm
 from app.models import User
 from app.auth.email import send_password_reset_email
-from flask_login import current_user, login_user, logout_user, login_required
+from flask_login import current_user, login_user, logout_user
 from app import db
-from datetime import datetime
-from app import auth
-import base64
-from flask_babel import _, get_locale
-from guess_language import guess_language
+from flask_babel import _
 
 
 @bp.route('/login', methods=['GET', 'POST'])
@@ -85,34 +81,3 @@ def reset_password(token):
         flash(_('Your password has been reset.'))
         return redirect(url_for('auth.login'))
     return render_template('auth/reset_password.html', form=form)
-
-###
-
-# 通过API获取token
-@bp.route('/api/token')
-@auth.login_required
-def get_auth_token():
-    token = g.user.generate_auth_token()
-    return jsonify({ 'token': token.decode('ascii')})
-
-# 通过API验证密码，两种验证，如果是token放到了username的位置，则只验证token，否则验证用户名和密码
-@auth.verify_password
-def verify_password(username_or_token, password):
-    user = User.verify_auth_token(username_or_token)
-    if not user:
-        user = User.query.filter_by(username=username_or_token).first()
-        if not user or not user.check_password(password):
-            return False
-    g.user = user
-    return True
-
-# 通过API登陆
-@bp.route('/api/test_login')
-@auth.login_required
-def login_required():
-    if g.user:
-        return '<h1>you are still in</h1>'
-    else:
-        return '<h1>you have logouted</h1>'
-
-
